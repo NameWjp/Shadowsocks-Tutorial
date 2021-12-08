@@ -388,7 +388,3 @@ github.com/zhaoweih
 # 赞赏
 
 ❤Support me **(BSC USDT)** :0x758e1df86d8d41b28fc801719dbc521f53400d52
-
-
-# 其它参考链接
-+ [https://shadowsockshelp.github.io/](https://shadowsockshelp.github.io/)
