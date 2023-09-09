@@ -1,8 +1,12 @@
+[🌏English Version](./README_en.md)
+
+[🇭🇰繁體版本](./README_zh-Hant.md)
+
 **[全部文章目录](https://github.com/zhaoweih/Shadowsocks-Tutorial/wiki/%E7%9B%AE%E5%BD%95)**
 
 > 🚀安装成功后如果想加速Shadowsocks的小伙伴可以看看我这篇文章[给小白的kcptun加速shadowsocks教程](./kcptun_shadowsocks_tutorial.md)(效果很明显)
 >
-> 如果过程中出现问题无法解决可以发送邮件到我邮箱zhaoweihao.dev@gmail.com  或者提[issues](https://github.com/zhaoweih/Shadowsocks-Tutorial/issues)
+> 如果过程中出现问题无法解决可以发送邮件到我邮箱zhaoweihao.dev@gmail.com  或者[提issues](https://github.com/zhaoweih/Shadowsocks-Tutorial/issues)
 >
 > 如果工程师朋友们需要加速git克隆速度可以查看这篇文章[给小白的git配置shadowsocks代理加速教程](./git/git_shadowsocks_readme.md)
 
@@ -17,6 +21,8 @@
 俗话说，万事起头难。想想倒也是这样，也不是说购买VPS服务器有多难，是接受它比较难，我当时也是一个还没买过服务器的小白，对于第一次尝试的东西都没有底，怎么敢随意下手。好了，你现在可以放心了，据我使用，Vultr和DigitalOcean这两个服务商都是可以随时部署随时摧毁服务器，是按每小时计费的，一个月是5美金，大概0.007美金一小时，就算你创建一个服务器IP刚好是被某墙屏蔽了，那就删掉也只是扣0.1美金，作为一个穷学生的我都能接受了，你还犹豫吗？
 
 ### 1、注册并登录
+
+[<img src="./images/logo_onwhite.svg" alt="alt text" title="vultr" style="zoom: 50%;" />](https://www.vultr.com/?ref=9091308-8H)
 
 Vultr推荐链接：https://www.vultr.com/?ref=7370522
 
@@ -44,7 +50,7 @@ Vultr推荐链接：https://www.vultr.com/?ref=7370522
 
 第三步：接下来要注意了，系统最好选择**CentOS 7 x64**，点击CentOS可以下拉选择7 x64
 
-![](./images/server_type.png)
+![](./images/select_centos7.png)
 
 第四步：选择套餐，当然ss不需要配置太高的服务器，最低配置5美金一个月的就可以了，反正我每次看2.5美金都是卖光的，如果你能看到那赶紧选啊，千年一遇。
 
@@ -128,7 +134,7 @@ windows下ssh连接需要下载Xshell，百度搜一搜就能下载了，当然�
 
 下面就是精髓的部分了，感谢[@teddysun](https://github.com/teddysun)大佬制作的一键安装脚本，具体更多细节可查看博客：https://teddysun.com/486.html  (由于大佬的[退出](https://teddysun.com/548.html),所以下面的命令目前还可以使用，但是版本已经不再更新)
 
-```
+```bash
 wget --no-check-certificate -O shadowsocks-all.sh https://raw.githubusercontent.com/teddysun/shadowsocks_install/master/shadowsocks-all.sh
 chmod +x shadowsocks-all.sh
 ./shadowsocks-all.sh 2>&1 | tee shadowsocks-all.log
@@ -171,6 +177,13 @@ chmod +x shadowsocks-all.sh
 我就当大家英文水平还好吧，下面说的就是你的服务器IP，服务器端端口，密码，加密方式。
 
 ![](./images/libev/7.png)
+
+最后需要关闭下系统的防火墙，粘贴下面的命令然后回车就行
+
+```bash
+systemctl stop firewalld
+systemctl disable firewalld
+```
 
 ## 下载客户端
 
@@ -254,7 +267,7 @@ PAC模式就是访问国内网站会走国内IP，访问被封的网站走服务
 # 补充
 ## 设置多端口
 
-[如何启用 Shadowsocks 的多端口](https://blog.chiuwaiho.tech/2019/06/01/%E5%A6%82%E4%BD%95%E5%90%AF%E7%94%A8Shadowsocks%E7%9A%84%E5%A4%9A%E7%AB%AF%E5%8F%A3/)
+[如何启用 Shadowsocks 的多端口](https://stanleyzhao.xyz/2019/06/01/%E5%A6%82%E4%BD%95%E5%90%AF%E7%94%A8Shadowsocks%E7%9A%84%E5%A4%9A%E7%AB%AF%E5%8F%A3/)
 
 ## 常用命令
 start 启动
@@ -305,54 +318,14 @@ status 状态
 
 > 使用root用户登录，运行以下命令：
 >
-> ```bsh
+> ```bash
 > wget --no-check-certificate https://github.com/teddysun/across/raw/master/bbr.sh && chmod +x bbr.sh && ./bbr.sh
 > ```
 >
 > 安装完成后，脚本会提示需要重启 VPS，输入 y 并回车后重启。
 
-# 更新
-## 201210更新
-Tips：如果要使用国内的服务器(例如阿里云、腾讯云之类的)最好先[一键DD系统](https://ssr.tools/693)重装成纯净版系统再搭建Shadowsocks服务，否则可能会收到警告邮件
-
-## 190518更新  
-[增加AWS安装EPEL的说明 #8](https://github.com/zhaoweih/Shadowsocks-Tutorial/issues/8)
-
-## 190203更新
-如果想要测试服务器的下载速度和运行速度，可以查看这篇文章:[文章](https://teddysun.com/444.html)
->仅需要一行命令
->```bsh
->wget -qO- bench.sh | bash
->```
-
-我的一些服务器测试速度，希望对大家选择服务器时有用:
-- digitalocean新加坡 5美金一个月
-![](./images/do_singapore.png)
-- vpsserver日本东京 4.9美金一个月
-![](./images/vpsserver_jp.png)
-- hostus香港 2.95美金一个月
-![](./images/hostus_hk.png)
-- aws亚马逊韩国 免费一年EC2
-![](./images/aws_kr.png)
-
-## 180624更新
-如果要PAC自定义规则，即譬如你要上的网站不在PAC目录里，可以自己添加
-譬如我要加github进入PAC自定义协议里
-格式如下：
-
-```
-||github.com
-```
-
-添加进去后,**记得重启一下Shadowsocks让它生效**
-
-api.github.com 
-
-github.com/zhaoweih
-
-等等包含github.com的URL都会走服务器IP
-
 # Q&A
+
 汇总一些邮件反馈的问题
 
 **[已解决]1.问题：-bash: wget: command not found
@@ -371,12 +344,63 @@ github.com/zhaoweih
 
 **[已解决]4.[Error] Failed to install python**  
 
-由于以前文章的centos7不可选导致选择centos8导致的无法安装问题可以尝试使用**Debian10x64**系统安装[#27](https://github.com/zhaoweih/Shadowsocks-Tutorial/issues/27)
+由于以前文章的centos7不可选导致选择centos8导致的无法安装问题可以尝试使用**Debian10x64或者CentOS7**系统安装[#27](https://github.com/zhaoweih/Shadowsocks-Tutorial/issues/27)
+
+**[已解决]5.可以ping通但是连不上**
+
+这个情况有可能是防火墙没关闭，因为现在vultr默认会打开防火墙，所以需要关闭防火墙端口才能通
+
+```bash
+systemctl stop firewalld
+systemctl disable firewalld
+```
+
+执行后可以用`systemctl status firewalld`查看是否已经关闭，显示inactive就是关闭了防火墙
+
+![](./images/firewall_inactive.png)
+
+[在线检查端口是否开放](https://tool.chinaz.com/port)
+
+# 更新
+
+## 20230318更新
+[CentOS 7+查看防火墙状态开启或关闭防火墙命令](https://cloud.tencent.com/developer/article/1869020)
+
+## 201210更新
+Tips：如果要使用国内的服务器(例如阿里云、腾讯云之类的)最好先[一键DD系统](https://ssr.tools/693)重装成纯净版系统再搭建Shadowsocks服务，否则可能会收到警告邮件
+
+## 190518更新  
+[增加AWS安装EPEL的说明 #8](https://github.com/zhaoweih/Shadowsocks-Tutorial/issues/8)
+
+## 190203更新
+如果想要测试服务器的下载速度和运行速度，可以查看这篇文章:[文章](https://teddysun.com/444.html)
+>仅需要一行命令
+>```bash
+>wget -qO- bench.sh | bash
+>```
+
+## 180624更新
+如果要PAC自定义规则，即譬如你要上的网站不在PAC目录里，可以自己添加
+譬如我要加github进入PAC自定义协议里
+格式如下：
+
+```javascript
+||github.com
+```
+
+添加进去后,**记得重启一下Shadowsocks让它生效**
+
+api.github.com 
+
+github.com/zhaoweih
+
+等等包含github.com的URL都会走服务器IP
 
 # 讨论
 ## Discord
-**我创建了一个discord聊天室，遇到问题的小伙伴可以一起讨论**
-[![alt text](./images/discord.svg  "discordapp")](https://discord.gg/wHFxCVk)
+**我创建了一个Discord讨论组，遇到问题的小伙伴可以一起讨论**
+
+[![Discord](./images/discord.svg)](https://discord.gg/wHFxCVk)
 
 # 更多
 **如果想详细了解有关shadowsocks翻墙知识的小伙伴可以查看下面文章**
